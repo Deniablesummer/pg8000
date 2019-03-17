@@ -57,7 +57,7 @@ Another query, using some PostgreSQL functions:
 [source,python]
 ----
 >>> cursor.execute("SELECT extract(millennium from now())")
-<pg8000.core.Cursor object at 0x...>
+<pg8000.core.Cursor object at ...>
 >>> cursor.fetchone()
 [3.0]
 
@@ -70,7 +70,7 @@ A query that returns the PostgreSQL interval type:
 >>> import datetime
 >>> cursor.execute("SELECT timestamp '2013-12-01 16:06' - %s",
 ... (datetime.date(1980, 4, 27),))
-<pg8000.core.Cursor object at 0x...>
+<pg8000.core.Cursor object at ...>
 >>> cursor.fetchone()
 [datetime.timedelta(12271, 57960)]
 
@@ -83,7 +83,7 @@ point] type:
 [source,python]
 ----
 >>> cursor.execute("SELECT cast(%s as point)", ('(2.3,1)',))
-<pg8000.core.Cursor object at 0x...>
+<pg8000.core.Cursor object at ...>
 >>> cursor.fetchone()
 ['(2.3,1)']
 
@@ -96,7 +96,7 @@ the 'numeric' parameter style:
 ----
 >>> pg8000.paramstyle = "numeric"
 >>> cursor.execute("SELECT array_prepend(:1, :2)", ( 500, [1, 2, 3, 4], ))
-<pg8000.core.Cursor object at 0x...>
+<pg8000.core.Cursor object at ...>
 >>> cursor.fetchone()
 [[500, 1, 2, 3, 4]]
 >>> pg8000.paramstyle = "format"
@@ -112,7 +112,7 @@ turned on by using the autocommit property of the connection.
 >>> conn.autocommit = True
 >>> cur = conn.cursor()
 >>> cur.execute("vacuum")
-<pg8000.core.Cursor object at 0x...>
+<pg8000.core.Cursor object at ...>
 >>> conn.autocommit = False
 >>> cur.close()
 
@@ -129,9 +129,9 @@ encoding is by using an SQL command. For example:
 ----
 >>> cur = conn.cursor()
 >>> cur.execute("SET CLIENT_ENCODING TO 'UTF8'")
-<pg8000.core.Cursor object at 0x...>
+<pg8000.core.Cursor object at ...>
 >>> cur.execute("SHOW CLIENT_ENCODING")
-<pg8000.core.Cursor object at 0x...>
+<pg8000.core.Cursor object at ...>
 >>> cur.fetchone()
 ['UTF8']
 >>> cur.close()
@@ -147,7 +147,7 @@ example:
 >>> cur = conn.cursor()
 >>> val = ['Apollo 11 Cave', True, 26.003]
 >>> cur.execute("SELECT cast(%s as json)", (json.dumps(val),))
-<pg8000.core.Cursor object at 0x...>
+<pg8000.core.Cursor object at ...>
 >>> cur.fetchone()
 [['Apollo 11 Cave', True, 26.003]]
 >>> cur.close()
@@ -166,9 +166,9 @@ Here's an example:
 ----
 >>> cur = conn.cursor()
 >>> cur.execute("LISTEN aliens_landed")
-<pg8000.core.Cursor object at 0x...>
+<pg8000.core.Cursor object at ...>
 >>> cur.execute("NOTIFY aliens_landed")
-<pg8000.core.Cursor object at 0x...>
+<pg8000.core.Cursor object at ...>
 >>> conn.commit()
 >>> conn.notifications[0][1]
 'aliens_landed'
