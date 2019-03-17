@@ -898,7 +898,8 @@ http://www.python.org/dev/peps/pep-0249/[DBAPI 2.0 specification].
 ===== pg8000.Cursor.execute(operation, args=None, stream=None)
 
 Executes a database operation. Parameters may be provided as a sequence, or as
-a mapping, depending upon the value of `pg8000.paramstyle`.
+a mapping, depending upon the value of `pg8000.paramstyle`. Returns the cursor,
+which may be iterated over.
 
 This method is part of the
 http://www.python.org/dev/peps/pep-0249/[DBAPI 2.0 specification].
